@@ -10,6 +10,9 @@ inputs:
   authkey:
     description: 'Your Tailscale authentication key, from the admin panel.'
     required: true
+  hostname:
+    description: 'Hostname'
+    required: true
   version:
     description: 'Tailscale version to use.'
     required: true
@@ -43,7 +46,7 @@ runs:
         env:
           TAILSCALE_AUTHKEY: ${{ inputs.authkey }}
           ADDITIONAL_ARGS: ${{ inputs.args }}
+          HOSTNAME: ${{ inputs.hostname }}
         run: |
           sudo tailscaled 2>~/tailscaled.log &
-          HOSTNAME="github-$(cat /etc/hostname)"
           sudo tailscale up --authkey ${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME} --accept-routes ${ADDITIONAL_ARGS}

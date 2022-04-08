@@ -7,6 +7,7 @@ by adding a step to your workflow.
   - name: Tailscale
     uses: tailscale/github-action@v1
       with:
+        hostname: github-action-hostname
         authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 ```
 
